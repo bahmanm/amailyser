@@ -32,7 +32,7 @@ Now that everything's ready do as below:
 
 == Notes ==
 
-*  amailyser is written using P
+*  amailyser is written using Python 2.x
 *  Currently amailyser supports only 'maildir' and 'mbox' formats.
 *  The default database is SQLite but you can almost use whatever database you
    wish.  The only limitation is SQLAlchemy's support for the target database.
