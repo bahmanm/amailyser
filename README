@@ -37,4 +37,4 @@ Now that everything's ready do as below:
 *  The default database is SQLite but you can almost use whatever database you
    wish.  The only limitation is SQLAlchemy's support for the target database.
 *  For more information please visit:
-   http://bahmanwares.blogspot.com/2011/03/amailyser-e-mail-analyser.html
+   http://bahmanm.blogspot.com/2011/03/amailyser-e-mail-analyser.html
