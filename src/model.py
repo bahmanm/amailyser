@@ -19,8 +19,6 @@
     You should have received a copy of the GNU General Public License
     along with amialyser.  If not, see <http://www.gnu.org/licenses/>.
     
-@version: 0.0.1
-
 '''
 
 from sqlalchemy import Column, ForeignKey, Integer, Unicode, DateTime, String
@@ -54,6 +52,9 @@ class Contact(Base):
 
     email = Column(String(255), primary_key=True)
     name = Column(Unicode(255))
+    
+    def __repr__(self):
+        return '{Contact [email: %s, name: %s]}' % (self.email, self.name)
 
 ###############################################################################    
 class MsgRecipient(Base):

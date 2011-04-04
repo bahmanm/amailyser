@@ -18,8 +18,6 @@
 
     You should have received a copy of the GNU General Public License
     along with amialyser.  If not, see <http://www.gnu.org/licenses/>.
-    
-@version: 0.0.1
 
 '''
 
@@ -38,7 +36,7 @@ class MailBox:
     ###########################     
     def open(self):
         if self.boxtype == 'maildir':
-            self.box = mailbox.Maildir(self.path, create=False)
+            self.box = mailbox.Maildir(self.path, False)
             self.box.lock()
         elif self.boxtype == 'mbox':
             self.box = mailbox.mbox(self.path, create=False)
@@ -90,18 +88,17 @@ class MailMessage:
     
     ###########################
     def persist(self):
-#        try:
-        self._persist_contact(self.msgfrom)
-        for item in self.tolist:
-            self._persist_contact(item)
-        for item in self.cclist:
-            self._persist_contact(item)
-        self._persist_recipients()
-        self._persist_message()
-        session.commit()
-#        except:
-#            print 'persist():  exception happened.'
-#            pass
+        try:
+            self._persist_contact(self.msgfrom)
+            for item in self.tolist:
+                self._persist_contact(item)
+            for item in self.cclist:
+                self._persist_contact(item)
+            self._persist_recipients()
+            self._persist_message()
+        except:
+            print 'persist():  exception happened.'
+            pass
         
     ###########################
     def _persist_recipients(self):
@@ -113,11 +110,11 @@ class MailMessage:
             r = MsgRecipient()
             (r.contact_email, r.recipient_type, r.message_id) = (item['email'], 'cc', self.messageid)
             session.add(r)
-        #session.commit()
+        session.commit()
         
     ###########################
     def _persist_message(self):
-        if session.query(Message).filter(Message.id == self.messageid).first():
+        if session.query(Message).filter(Message.id == self.messageid).count() != 0:
             print 'Message with ID = (' + self.messageid + ') has already been persisted.  Skipping.'
             raise Exception()
         m = Message()
@@ -128,16 +125,15 @@ class MailMessage:
         m.subject = self.subject
         m.msgdate = self.date
         session.add(m)
-        #session.commit()
+        session.commit()
     
     ###########################
     def _persist_contact(self, contact):
-        c = session.query(Contact).filter(Contact.email == contact['email']).first()
-        if c == None:
+        if session.query(Contact).filter(Contact.email == contact['email']).count() == 0:
             c = Contact()
             (c.email, c.name) = (contact['email'], contact['name'])
-        session.add(c)
-        #session.commit()
+            session.add(c)
+            session.commit()
     
     ###########################
     def _size(self, message):

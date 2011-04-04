@@ -32,6 +32,45 @@ Now that everything's ready do as below:
 
 == Notes ==
 
+*  amailyser is written using Python 2.x.
+*  Currently amailyser supports only 'maildir' and 'mbox' formats.
+*  The default database is SQLite but you can almost use whatever database you
+   wish.  The only limitation is SQLAlchemy's support for the target database.
+*  For more information please visit:
+   http://bahmanwares.blogspot.com/2011/03/amailyser-e-mail-analyser.htmlAmailyser (The E-mail Analyser)
+
+
+== Introduction ==
+
+This program loads your local mailboxes either in 'maildir' or 'mbox' format,
+reads each message and perisit the important fields in a database.
+
+
+== What To Do With The Databsae? ==
+
+You can run the most complex and mind-blowing queries using whatever tools you
+wish ranging from simpler reporting tools like JasperReports to OLAP to
+exctract the juice out of your e-mail data.
+
+
+== How To Run Amailyser? ==
+
+Make sure you have Python 2.x and SQLAlchemy installed.  This link may
+help: http://www.sqlalchemy.org/docs/intro.html#installing-sqlalchemy
+
+Now that everything's ready do as below:
+1.  Grab a copy of amailyser.
+2.  Exctract the archive.
+3.  Edit 'amailyser/src/config.py' to suite your requirements and save it.
+4.  Open a command prompt.
+5.  'cd' into 'amailyser/'.
+6.  Execute the following command:
+     $ EXPORT PYTHONPATH=$PYTHONPATH:src/ ; python src/main.py
+7.  That's all.  Have fun busting your database with brilliant queries :-)
+
+
+== Notes ==
+
 *  amailyser is written using Python 2.x
 *  Currently amailyser supports only 'maildir' and 'mbox' formats.
 *  The default database is SQLite but you can almost use whatever database you
