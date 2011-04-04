@@ -32,9 +32,9 @@ Now that everything's ready do as below:
 
 == Notes ==
 
-*  amailyser is written using Python 2.x.
+*  amailyser is written using Python 2.x
 *  Currently amailyser supports only 'maildir' and 'mbox' formats.
 *  The default database is SQLite but you can almost use whatever database you
    wish.  The only limitation is SQLAlchemy's support for the target database.
 *  For more information please visit:
-   http://bahmanwares.blogspot.com/2011/03/amailyser-e-mail-analyser.htmlAmailyser (The E-mail Analyser)
+   http://bahmanm.blogspot.com/2011/03/amailyser-e-mail-analyser.html
